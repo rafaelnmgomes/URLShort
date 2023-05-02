@@ -7,7 +7,7 @@
     <li class="has-line-data" data-line-start="6" data-line-end="8">Open a new terminal without closing the server,run 'cd client' then 'npm install' after the install is complete run 'npm run start'</li>
   </ul>
   <h2 class="code-line" data-line-start=40 data-line-end=41><a id="What_Does_The_Build_Include_40"></a>What Does The App Do?</h2>
-  <p class="has-line-data" data-line-start="42" data-line-end="43">Once the client is running open the user can input a link and have it shorten version created</p>
+  <p class="has-line-data" data-line-start="42" data-line-end="43">Once the client is running the user can input a link and have it shorten version created</p>
   <h3 class="code-line" data-line-start=54 data-line-end=55><a id="File_Structure_54"></a>File Structure</h3>
   <pre><code class="has-line-data" data-line-start="57" data-line-end="131">MERN-stack-build-template
 │
