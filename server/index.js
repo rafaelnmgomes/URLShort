@@ -56,6 +56,24 @@ app.get("/:shortUrl", async (req, res) => {
   }
 });
 
+app.patch("/:shortUrl", async (req, res) => {
+  try {
+    const url = await ShortUrl.findOne({ id: req.params.id });
+    if (url == null) return res.sendStatus(404);
+
+    await url.updateOne(
+      { fullUrl: url.fullUrl },
+      { $set: { fullUrl: req.body.fullUrl } }
+    );
+
+    res.status(200).json({ message: "ShortUrl updated" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "An error occured while updating the URL" });
+  }
+});
+
 app.listen(process.env.PORT || 5001, () => {
   console.log("Server is running on port 5001");
 });
