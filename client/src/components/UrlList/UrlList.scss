@@ -1,30 +1,7 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 .title {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 15px;
-}
-
-.subtitle {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 15px;
-}
-
-.input {
-  width: 50%;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
 }
 
 .row {
