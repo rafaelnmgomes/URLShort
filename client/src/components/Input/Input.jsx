@@ -8,9 +8,13 @@ function Input({ getUrls }) {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = async () => {
-    await axios.post("http://localhost:5001/shortUrl", {
+    const response = await axios.post("http://localhost:5001/shortUrl", {
       fullUrl: inputValue,
     });
+
+    if (response.status !== 201) {
+      return toast.error("An error occured while creating the URL");
+    }
 
     setInputValue("");
     getUrls();

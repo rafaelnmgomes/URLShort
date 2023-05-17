@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import Input from "../components/Input/Input";
 import UrlList from "../components/UrlList/UrlList";
 import "./Home.scss";
@@ -8,6 +9,9 @@ function Home() {
 
   const getUrls = async () => {
     const response = await fetch("http://localhost:5001/");
+    if (response.status !== 200)
+      return toast.error("An error occured while getting URLs");
+
     const data = await response.json();
     setUrls(data.reverse());
   };
