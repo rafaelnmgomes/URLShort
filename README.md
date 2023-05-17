@@ -10,26 +10,6 @@
   <p class="has-line-data" data-line-start="42" data-line-end="43">Once the client is running the user can input a link and have it shorten version created. The user can open the link on a new tab or copy to the clipboard to share with friends</p>
   <h3 class="code-line" data-line-start=54 data-line-end=55><a id="File_Structure_54"></a>File Structure</h3>
   <pre><code class="has-line-data" data-line-start="57" data-line-end="131">MERN-stack-build-template
-│
-├── backend
-│   │
-│   ├── models
-│   │   └── shortUrl.js
-│   │    
-│   └── index.js
-│
-├── client
-│   │
-│   ├── public
-│   │   │
-│   │   ├── bundle.js
-│   │   └── index.html
-│   │
-│   └── src
-│       │
-│       ├── App.jsx
-│       ├── App.css
-│       ├── index.js
-│       └── index.css
+
 </code></pre>
 </body>
