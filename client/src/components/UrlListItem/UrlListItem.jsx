@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { ContentCopy, OpenInNew } from "@mui/icons-material";
-import { toast } from "react-hot-toast";
 import axios from "axios";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 import "./UrlListItem.scss";
 
 function UrlListItem({ id, fullUrl, url, getUrls }) {

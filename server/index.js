@@ -58,16 +58,18 @@ app.get("/:shortUrl", async (req, res) => {
 
 app.patch("/:shortUrl", async (req, res) => {
   try {
-    const url = await ShortUrl.findOne({ id: req.params.id });
-    if (url == null) return res.sendStatus(404);
+    const filter = { _id: req.body.id };
+    const updatedUrl = { fullUrl: req.body.fullUrl };
 
-    await url.updateOne(
-      { fullUrl: url.fullUrl },
-      { $set: { fullUrl: req.body.fullUrl } }
-    );
+    await ShortUrl.updateOne(filter, updatedUrl).then((result) => {
+      if (result.matchedCount === 0) {
+        return res.status(404).json({ message: "Document not found" });
+      }
+    });
 
     res.status(200).json({ message: "ShortUrl updated" });
   } catch (error) {
+    console.log("🚀 ~ file: index.js:71 ~ app.patch ~ error:", error);
     res
       .status(500)
       .json({ message: "An error occured while updating the URL" });
