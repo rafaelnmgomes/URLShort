@@ -56,23 +56,38 @@ app.get("/:shortUrl", async (req, res) => {
   }
 });
 
-app.patch("/:shortUrl", async (req, res) => {
+app.patch("/:id", async (req, res) => {
   try {
-    const filter = { _id: req.body.id };
+    const filter = { _id: req.params.id };
     const updatedUrl = { fullUrl: req.body.fullUrl };
 
     await ShortUrl.updateOne(filter, updatedUrl).then((result) => {
       if (result.matchedCount === 0) {
         return res.status(404).json({ message: "Document not found" });
       }
+      res.status(200).json({ message: "ShortUrl updated" });
     });
-
-    res.status(200).json({ message: "ShortUrl updated" });
   } catch (error) {
-    console.log("🚀 ~ file: index.js:71 ~ app.patch ~ error:", error);
     res
       .status(500)
       .json({ message: "An error occured while updating the URL" });
+  }
+});
+
+app.delete("/:id", async (req, res) => {
+  try {
+    const filter = { _id: req.params.id };
+
+    await ShortUrl.deleteOne(filter).then((result) => {
+      if (result.deletedCount === 0) {
+        return res.status(404).json({ message: "Document not found" });
+      }
+      res.status(200).json({ message: "ShortUrl deleted" });
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "An error occured while deleting the URL" });
   }
 });
 

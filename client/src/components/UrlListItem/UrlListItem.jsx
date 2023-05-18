@@ -1,4 +1,4 @@
-import { ContentCopy, OpenInNew } from "@mui/icons-material";
+import { ContentCopy, DeleteOutline, OpenInNew } from "@mui/icons-material";
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -14,13 +14,9 @@ function UrlListItem({ id, fullUrl, url, getUrls }) {
   };
 
   const handleUpdate = async () => {
-    const response = await axios.patch(
-      `http://localhost:5001/${url.shortUrl}`,
-      {
-        id,
-        fullUrl: inputValue,
-      }
-    );
+    const response = await axios.patch(`http://localhost:5001/${id}`, {
+      fullUrl: inputValue,
+    });
 
     if (response.status !== 200) {
       toast.error("An error occured while updating the URL");
@@ -39,6 +35,18 @@ function UrlListItem({ id, fullUrl, url, getUrls }) {
       "noopener,noreferrer"
     );
     if (newWindow) newWindow.opener = null;
+  };
+
+  const handleDelete = async () => {
+    const response = await axios.delete(`http://localhost:5001/${id}`);
+
+    if (response.status !== 200) {
+      toast.error("An error occured while deleting the URL");
+      return;
+    }
+
+    toast.success("URL deleted successfully");
+    getUrls();
   };
 
   return (
@@ -66,7 +74,9 @@ function UrlListItem({ id, fullUrl, url, getUrls }) {
         <div title="Copy to clipboard">
           <ContentCopy onClick={() => handleCopy(url)} className="icon" />
         </div>
-        <div>Delete Icon</div>
+        <div>
+          <DeleteOutline onClick={() => handleDelete()} className="icon" />
+        </div>
       </div>
     </div>
   );
