@@ -8,13 +8,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://macielrafael1:CrO2askUSOqOcqZY@cluster0.yjgezwm.mongodb.net/test",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.get("/", async (req, res) => {
   try {
